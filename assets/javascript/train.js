@@ -254,7 +254,7 @@ function convertNextTrainToHoursMin(nextArrivalInMin) {
   var stamp = "";
 
   // Also figure out if time is AM or PM.
-  if(nextArrivalHours ===12){
+  if (nextArrivalHours === 12) {
 
     nextArrivalHours = nextArrivalHours;
 
@@ -309,23 +309,18 @@ $("#trains").on("click", ".tableRow", function() {
   database.ref().once('value', function(snapshot) {
 
     snapshot.forEach(function(childSnapshot) {
+      let elements;
+      let keyLength = 0;
+      var childKey = childSnapshot.key;
+      var childData = childSnapshot.val();
 
-      console.log(value.length);
+      console.log(childData);
 
-      for(let i=0; i<value.length; i++){
+      for (element = 0; element < childData.length; i++) {
 
-        var childKey = childSnapshot.key.value[i];
-
-        var childData = childSnapshot.val();
-
-        console.log(childKey);
-
-        database.ref().child(childKey).remove();
-
+        database.ref().child(childData[element]).remove();
       }
 
-
-      // ...
     });
   });
 
