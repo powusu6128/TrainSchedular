@@ -1,0 +1,51 @@
+/* So padding and border no longer increase width. */
+
+* {
+  box-sizing: border-box;
+}
+
+.jumbotron {
+  background-color: #0066ff;
+
+  color: #000000;
+
+  padding: 5px;
+
+  border: 5px;
+
+  margin-bottom: 5px;
+}
+
+.panel-heading {
+  background-color: #0066ff;
+  color: #000000;
+  margin-top: 10px;
+}
+
+.btn {
+  background-color: #0066ff;
+}
+
+.panel-default {
+  background: gray;
+}
+
+/*
+
+  These rules take effect when the browser's width
+
+  is 641px or more.
+
+*/
+
+@media screen and (max-width: 768px) {}
+
+/*
+
+  These rules take effect when the browser's width
+
+  is 640px or less.
+
+*/
+
+@media screen and (max-width: 640px) {}
