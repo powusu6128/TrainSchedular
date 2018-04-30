@@ -143,7 +143,7 @@ database.ref().on("child_added", function(childSnapshot) {
 
   // Build up train table in DOM.
 
-  var rowTrains = $("<tr>").addClass("tableRow");
+  var rowTrains = $("<tr>").addClass("tableRow").attr("data-key", childSnapshot.key);
 
   rowTrains.append(`<td>${childSnapshot.val().name}</td>`)
     .append(`<td>${childSnapshot.val().destination}</td>`)
@@ -306,22 +306,12 @@ function determineMinutesAway(nextArrivalInMin, currentTotalTimeMin) {
 $("#trains").on("click", ".tableRow", function() {
   $(this).closest('tr').remove();
 
-  database.ref().once('value', function(snapshot) {
+  var tr = $(this).closest('tr');
 
-    snapshot.forEach(function(childSnapshot) {
-      let elements;
-      let keyLength = 0;
-      var childKey = childSnapshot.key;
-      var childData = childSnapshot.val();
+  var childKey = tr.attr("data-key");
 
-      console.log(childData);
+  database.ref().child(childKey).remove();
 
-      for (element = 0; element < childData.length; i++) {
-
-        database.ref().child(childData[element]).remove();
-      }
-
-    });
-  });
-
+  tr.remove();
+  
 });
